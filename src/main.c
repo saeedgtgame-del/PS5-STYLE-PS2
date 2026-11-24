@@ -112,7 +112,7 @@ int main(void){
    scr_setXY(10,13); scr_printf("LOADING...");
    scr_setXY(10,16); scr_printf("PRESS SELECT TO RETURN");
   }
-  DelayThread(16000);
+  for (volatile int wait = 0; wait < 50000; ++wait) { }
  }
  return 0;
 }
