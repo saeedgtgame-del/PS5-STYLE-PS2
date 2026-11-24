@@ -62,7 +62,7 @@ int main(void){
  int oldSelect=0,oldX=0;
  gsGlobal=gsKit_init_global();
  if(!gsGlobal) return 1;
- dmaKit_init(DMA_CHANNEL_GIF,DMA_CHANNEL_FROMSPR,0,0);
+ dmaKit_init(D_CTRL_RELE_OFF, D_CTRL_MFD_OFF, D_CTRL_STS_UNSPEC, D_CTRL_STD_OFF, D_CTRL_RCYC_8, 1 << DMA_CHANNEL_GIF);
  dmaKit_chan_init(DMA_CHANNEL_GIF);
  gsKit_init_screen(gsGlobal);
  padInit(0); padPortOpen(0,0,padBuf);
@@ -99,7 +99,7 @@ int main(void){
      scr_setXY(5,13); scr_printf("PRESS SELECT TO RETURN");
      for(;;){
       if(padGetState(0,0)==PAD_STATE_STABLE && padRead(0,0,&b) && pressed(PAD_SELECT,b.btns)) break;
-      DelayThread(16000);
+      for (volatile int wait = 0; wait < 50000; ++wait) { }
      }
      draw_menu();
     }
