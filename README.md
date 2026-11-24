@@ -28,3 +28,5 @@ The build uses the community PS2DEV toolchain container, ps2dev/ps2dev:latest.
 
 ## Important limitation
 A PS2 cannot run PS5 games or GTA VI. The GTA VI screen is only a menu/loading demo. This project is a dashboard-style homebrew app, not a PS5 emulator.
+
+Build workflow fix: install GNU Make inside the Alpine-based PS2DEV image before compiling.
