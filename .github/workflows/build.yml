@@ -14,14 +14,25 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Build with PS2DEV
         run: |
           docker pull ps2dev/ps2dev:latest
-          docker run --rm -v "$PWD:/src" -w /src ps2dev/ps2dev:latest sh -lc 'make clean && make'
+          docker run --rm -v "$PWD:/src" -w /src ps2dev/ps2dev:latest sh -lc '
+            apk add --no-cache make &&
+            export PS2DEV=/usr/local/ps2dev &&
+            export PS2SDK=$PS2DEV/ps2sdk &&
+            export GSKIT=$PS2DEV/gsKit &&
+            export PATH="$PATH:$PS2DEV/bin:$PS2DEV/ee/bin:$PS2DEV/iop/bin:$PS2DEV/dvp/bin:$PS2SDK/bin" &&
+            make clean &&
+            make
+          '
+
       - name: Verify ELF
         run: |
           test -s PS5_STYLE_MENU.ELF
           file PS5_STYLE_MENU.ELF
+
       - name: Upload ELF artifact
         uses: actions/upload-artifact@v4
         with:
