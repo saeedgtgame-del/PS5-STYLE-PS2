@@ -1,4 +1,4 @@
-EE_BIN = PS5_STYLE_MENU.ELF
+EE_BIN = ORBIT_STORE.ELF
 EE_OBJS = src/main.o
 
 GSKIT ?= $(PS2DEV)/gsKit
