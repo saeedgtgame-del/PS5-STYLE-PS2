@@ -1,34 +1,31 @@
-# PS5-STYLE-PS2
+# ORBIT GAME STORE (PS2)
 
-A PS5-inspired dashboard homebrew project for the original PlayStation 2.
+A native PlayStation 2 homebrew store interface, developed inside the existing PS5-STYLE-PS2 repository.
 
-## Current prototype
-- Native PS2 ELF project using PS2SDK, gsKit and libpad.
-- D-pad and left analog stick navigation.
-- Cross (X) selects a tile.
-- GTA VI tile opens a visual-only loading demo; it does not run GTA VI.
-- Other game tiles are information/preview placeholders and do not launch commercial games.
-- Original abstract tile artwork; no copyrighted game cover images are bundled.
+## Branding
+The in-console store name is **ORBIT GAME STORE**. It is intentionally independent of the developer's personal name.
+
+## Current milestone
+- Native PS2 ELF built with PS2SDK, gsKit and libpad.
+- Controller navigation and a game-details page.
+- Dark store interface with red accents.
+- Catalog entries are clearly marked as placeholders.
+- No fake download progress: network and downloads remain disabled until the network client is integrated and tested.
+
+## Planned milestones
+1. Integrate the PS2DEV network stack (DEV9/SMAP, NETMAN, PS2IP) and verify DHCP/DNS on the target console/network adapter.
+2. Add a catalog/update service and versioned manifest.
+3. Add PS2-friendly cover thumbnails and a versioned catalog.
+4. Add downloads only for homebrew, public-domain, or otherwise legally distributable files. Show real byte counts, speed, percentage, and errors.
+5. Add safe resume/retry and storage-space checks.
 
 ## Build
-GitHub Actions builds the ELF on every push to main and when manually dispatched.
+GitHub Actions builds the ELF on pushes to main and on manual dispatch. Open Actions, select Build PS2 ELF, then download the ORBIT-GAME-STORE-PS2-ELF artifact.
 
-1. Open the Actions tab.
-2. Select Build PS2 ELF.
-3. Open the completed run.
-4. Download the PS5-STYLE-PS2-ELF artifact.
-5. Extract PS5_STYLE_MENU.ELF and test it with your PS2 homebrew setup.
+## Install in OPL
+The repository includes install/OPL/conf_apps.cfg and install/OPL/APPS/ORBITSTORE/title.cfg examples. Copy the built ELF to mass:/APPS/ORBITSTORE/ORBIT_STORE.ELF. Place title.cfg beside the ELF. Enable Applications start mode in OPL. A Free McBoot shortcut can point to the same ELF path.
 
-The build uses the community PS2DEV toolchain container, ps2dev/ps2dev:latest.
-
-## Controls
-- D-pad / left analog stick: move selection
-- X (Cross): select
-- Select: return from demo screen
-
-## Important limitation
-A PS2 cannot run PS5 games or GTA VI. The GTA VI screen is only a menu/loading demo. This project is a dashboard-style homebrew app, not a PS5 emulator.
-
-Build workflow fix: install GNU Make inside the Alpine-based PS2DEV image before compiling.
-
-The build configuration now includes the gsKit headers and library search path.
+## Important
+- This is a PS2 homebrew application, not a PS5 emulator.
+- Network support is not yet active in this milestone.
+- The catalog must not point to unauthorized copies of commercial games. Downloads are intended for homebrew and legally distributable content.
