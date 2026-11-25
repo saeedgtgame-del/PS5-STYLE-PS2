@@ -30,13 +30,13 @@ jobs:
 
       - name: Verify ELF
         run: |
-          test -s PS5_STYLE_MENU.ELF
-          file PS5_STYLE_MENU.ELF
+          test -s ORBIT_STORE.ELF
+          file ORBIT_STORE.ELF
 
       - name: Upload ELF artifact
         uses: actions/upload-artifact@v4
         with:
-          name: PS5-STYLE-PS2-ELF
-          path: PS5_STYLE_MENU.ELF
+          name: ORBIT-GAME-STORE-PS2-ELF
+          path: ORBIT_STORE.ELF
           if-no-files-found: error
           retention-days: 14
